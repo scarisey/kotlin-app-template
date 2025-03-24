@@ -1,0 +1,23 @@
+[versions]
+kotlin = "2.0.20"
+logback = "1.5.6"
+kotlinx-serialization = "1.7.3"
+hoplite = "2.9.0"
+shadow = "9.0.0-beta4"
+kotest = "5.9.1"
+
+[libraries]
+logback = { module = "ch.qos.logback:logback-classic", version.ref = "logback" }
+hoplite = { module = "com.sksamuel.hoplite:hoplite-core", version.ref = "hoplite" }
+hoplite-hocon = { module = "com.sksamuel.hoplite:hoplite-hocon", version.ref = "hoplite" }
+
+kotlinx-serialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
+
+kotest-runner-junit5 = { module = "io.kotest:kotest-runner-junit5", version.ref = "kotest" }
+kotest-assertions-core = { module = "io.kotest:kotest-assertions-core", version.ref = "kotest" }
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version = "2.0.0" }
+jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
