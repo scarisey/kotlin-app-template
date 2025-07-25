@@ -46,5 +46,5 @@ jobs:
             --method POST \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
-            /repos/scarisey/nixos-dotfiles/check-runs \
+            /repos/scarisey/kotlin-app-template/check-runs \
             -f "name=check_ok" -f "head_sha=$(git rev-parse HEAD)" -f "status=completed" -f "conclusion=success"
