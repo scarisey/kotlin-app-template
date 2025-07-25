@@ -1,0 +1,40 @@
+name: Check app template
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "**"
+jobs:
+  build:
+    permissions:
+      contents: write
+      checks: write
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Setup Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: 21
+    - name: Setup Gradle
+      uses: gradle/actions/setup-gradle@v4
+    - name: Build with Gradle
+      run: gradle build
+    - name: Generate a token
+      id: generate-token
+      uses: actions/create-github-app-token@v1
+      with:
+        app-id: ${{ secrets.GH_APP_ID }}
+        private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
+    - name: Check OK
+      env:
+        GITHUB_TOKEN: ${{ steps.generate-token.outputs.token }}
+        GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+      run: |
+        gh api \
+          --method POST \
+          -H "Accept: application/vnd.github+json" \
+          -H "X-GitHub-Api-Version: 2022-11-28" \
+          /repos/scarisey/kotlin-app-template/check-runs \
+          -f "name=check_ok" -f "head_sha=$(git rev-parse HEAD)" -f "status=completed" -f "conclusion=success"
