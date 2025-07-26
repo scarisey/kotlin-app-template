@@ -57,7 +57,7 @@
       };
     });
 
-    templates.default = { path = ./.;};
+    templates.default = { path = ./.; description="Kotlin App template";};
     formatter = forEachSupportedSystem ({pkgs}: pkgs.alejandra);
   };
 }
