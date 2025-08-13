@@ -45,4 +45,4 @@ jobs:
           git push --force --set-upstream origin ci/auto_update
           gh pr create --title "ci:auto update flake inputs" --body "ci: auto update flake inputs" || true
           gh pr merge --rebase --auto
-          gh workflow run 78068488 --ref 'ci/auto_update'
+          gh workflow run 175040799 --ref 'ci/auto_update'
