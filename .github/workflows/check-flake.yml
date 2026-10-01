@@ -18,7 +18,7 @@ jobs:
       contents: write
       checks: write
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
       - name: mount Nix store on larger partition
         # on the Linux runner `/` doesn't have enough space, but there's a `/mnt` which does.
         if: runner.os == 'Linux'
@@ -33,7 +33,7 @@ jobs:
           nix flake check
       - name: Generate a token
         id: generate-token
-        uses: actions/create-github-app-token@v2
+        uses: actions/create-github-app-token@v3
         with:
           app-id: ${{ secrets.GH_APP_ID }}
           private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}
